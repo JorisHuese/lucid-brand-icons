@@ -4,29 +4,29 @@ Rasterised brand logos (PNG) for Lucid architecture diagrams.
 
 ## Why this exists
 
-Lucid fetches an image URL and renders it, but it **does not rasterise SVG**:
-an SVG URL returns HTTP 200 and paints nothing on the canvas. Almost every
-public brand-logo CDN (simple-icons, gilbarbara/logos, devicon) serves SVG only,
-so none of them can be used directly. Lucid also has no image-upload REST
-endpoint, so icons cannot be hosted on `images.lucid.app` programmatically.
+Lucid fetches an image URL and renders it, but it **does not rasterise SVG**: an
+SVG URL returns HTTP 200 and paints nothing on the canvas. Almost every public
+brand-logo CDN (simple-icons, gilbarbara/logos, devicon) serves SVG only, so none
+of them can be used directly. Lucid also has no image-upload REST endpoint, so
+icons cannot be hosted on `images.lucid.app` programmatically.
 
 This repo is the durable raster host. Colour brand SVGs are converted to PNG
-once, committed here, and referenced from diagrams as
-`raw.githubusercontent.com` URLs.
+once, committed here, and referenced from diagrams as `raw.githubusercontent.com`
+URLs.
 
 Lucid stores the URL and re-fetches it on every view rather than copying the
-image, so the host stays a dependency for the life of every diagram. That is
-why the icons live here rather than behind an on-the-fly conversion proxy.
+image, so the host stays a dependency for the life of every diagram. That is why
+the icons live here rather than behind an on-the-fly conversion proxy.
 
 ## Keep this repo public
 
-Lucid fetches these URLs anonymously. If the repo becomes private, every
-diagram referencing it loses its icons.
+Lucid fetches these URLs anonymously. If the repo becomes private, every diagram
+referencing it loses its icons.
 
 ## Adding an icon
 
-Do not add files by hand. Use the generator in the Cortex Code skill, which
-also registers the icon in the resolver catalogue:
+Do not add files by hand. Use the generator in the Cortex Code skill, which also
+registers the icon in the resolver catalogue:
 
     python3 scripts/add_brand.py firebase "google analytics"
     python3 scripts/add_brand.py adjust --domain adjust.com
@@ -36,8 +36,8 @@ Skill location: `~/.snowflake/cortex/skills/lucid-architecture-diagrams`
 ## Sources
 
 - Full colour logos: gilbarbara/logos and devicon, rasterised via wsrv.nl.
-- Brands with no colour logo anywhere: Google's favicon service for the
-  vendor's domain. Genuine mark, but low resolution and visibly softer.
+- Brands with no colour logo anywhere: Google's favicon service for the vendor's
+  domain. Genuine mark, but low resolution and visibly softer.
 
 Logos are the property of their respective owners and are used nominatively to
 identify the products shown in architecture diagrams.
